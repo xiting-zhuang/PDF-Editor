@@ -2,12 +2,20 @@ import PyPDF2
 import sys
 import os
 
+class PDFMerger:
+    def __init__(self):
+        self.merger = PyPDF2.PdfMerger()
 
-merger = PyPDF2.PdfMerger()
-for file in os.listdir(os.curdir):
-    if file.endswith(".pdf"):
-        merger.append(file)
+    def merge_pdfs_in_directory(self, directory="."):
+        for file in os.listdir(directory):
+            if file.endswith(".pdf"):
+                self.merger.append(os.path.join(directory, file))
 
+    def write_merged_pdf(self, output_file="combinedFile.pdf"):
+        self.merger.write(output_file)
+        self.merger.close()
 
-merger.write("combinedFile.pdf")
-merger.close()
+if __name__ == "__main__":
+    pdf_merger = PDFMerger()
+    pdf_merger.merge_pdfs_in_directory()
+    pdf_merger.write_merged_pdf()
