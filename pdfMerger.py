@@ -17,5 +17,5 @@ class PDFMerger:
 
 if __name__ == "__main__":
     pdf_merger = PDFMerger()
-    pdf_merger.merge_pdfs_in_directory()
-    pdf_merger.write_merged_pdf()
+    pdf_merger.merge_pdfs_in_directory(directory="./merging")
+    pdf_merger.write_merged_pdf("new.pdf")
